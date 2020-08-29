@@ -1,0 +1,23 @@
+{
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "resources" : [
+    {
+      "filename" : "AngkorWat.arreferenceimage"
+    },
+    {
+      "filename" : "Boracay.arreferenceimage"
+    },
+    {
+      "filename" : "IcelandAurora.arreferenceimage"
+    },
+    {
+      "filename" : "Pyramid.arreferenceimage"
+    },
+    {
+      "filename" : "TomYumsoup.arreferenceimage"
+    }
+  ]
+}
