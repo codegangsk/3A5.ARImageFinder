@@ -36,13 +36,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
     }
+
     
-    func session(_ session: ARSession, didFailWithError error: Error) {
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        switch anchor {
+        case let imageAnchor as ARImageAnchor:
+            nodeAdded(node, for: imageAnchor)
+        case let planeAnchor as ARPlaneAnchor:
+            nodeAdded(node, for: planeAnchor)
+        default:
+        print("A new image has been discovered")
+        }
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
+    func nodeAdded(_ node: SCNNode, for imageAnchor: ARImageAnchor) {
     }
     
-    func sessionInterruptionEnded(_ session: ARSession) {
+    func nodeAdded(_ node: SCNNode, for planeAnchor: ARPlaneAnchor) {
     }
 }
