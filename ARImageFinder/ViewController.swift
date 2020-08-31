@@ -50,9 +50,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         node.addChildNode(planeNode)
         
         planeNode.runAction(waitRemoveAction)
+        
+        addName(node, for: imageAnchor)
     }
     
     var waitRemoveAction: SCNAction {
         return .sequence([.wait(duration: 5.0), .fadeOut(duration: 2.0), .removeFromParentNode()])
+    }
+    
+    func addName(_ node: SCNNode, for imageAnchor: ARImageAnchor) {
+        let referenceImage = imageAnchor.referenceImage
+        switch referenceImage.name {
+        case "cup": print("cup's been detected")
+        default: print("")
+        }
     }
 }
