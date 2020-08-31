@@ -41,23 +41,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         guard let imageAnchor = anchor as? ARImageAnchor else {return}
         
         let imageName = imageAnchor.referenceImage.name!
-        let referenceImage = imageAnchor.referenceImage
         
         guard imageName == "cup" else {return}
-        
-        let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
-        plane.firstMaterial?.diffuse.contents = UIColor.blue
-        let planeNode = SCNNode(geometry: plane)
-        planeNode.opacity = 0.25
-        planeNode.eulerAngles.x = -Float.pi / 2
-        node.addChildNode(planeNode)
-        planeNode.runAction(waitRemoveAction)
-        addName(node, for: imageAnchor)
-
+        addNode(node, for: imageAnchor)
     }
     
     var waitRemoveAction: SCNAction {
         return .sequence([.wait(duration: 5.0), .fadeOut(duration: 2.0), .removeFromParentNode()])
+    }
+    
+    func addNode(_ node: SCNNode, for imageAnchor: ARImageAnchor) {
+        let referenceImage = imageAnchor.referenceImage
+        let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
+          plane.firstMaterial?.diffuse.contents = UIColor.blue
+          let planeNode = SCNNode(geometry: plane)
+          planeNode.opacity = 0.25
+          planeNode.eulerAngles.x = -Float.pi / 2
+          node.addChildNode(planeNode)
+          planeNode.runAction(waitRemoveAction)
+          addName(node, for: imageAnchor)
+          
     }
     
     func addName(_ node: SCNNode, for imageAnchor: ARImageAnchor) {
