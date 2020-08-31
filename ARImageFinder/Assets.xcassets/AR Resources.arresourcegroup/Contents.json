@@ -6,6 +6,12 @@
   "resources" : [
     {
       "filename" : "cup.arreferenceimage"
+    },
+    {
+      "filename" : "fish.arreferenceimage"
+    },
+    {
+      "filename" : "tissuebox.arreferenceimage"
     }
   ]
 }

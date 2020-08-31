@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "KakaoTalk_Photo_2020-08-31-19-51-16.jpeg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "unit" : "centimeters",
+    "width" : 25
+  }
+}

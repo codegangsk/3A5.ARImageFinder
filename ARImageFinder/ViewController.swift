@@ -40,18 +40,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let imageAnchor = anchor as? ARImageAnchor else {return}
         
+        let imageName = imageAnchor.referenceImage.name!
         let referenceImage = imageAnchor.referenceImage
-             
+        
+        if imageName == "cup" {
         let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
         plane.firstMaterial?.diffuse.contents = UIColor.blue
         let planeNode = SCNNode(geometry: plane)
         planeNode.opacity = 0.25
         planeNode.eulerAngles.x = -Float.pi / 2
         node.addChildNode(planeNode)
-        
         planeNode.runAction(waitRemoveAction)
-        
         addName(node, for: imageAnchor)
+        }
     }
     
     var waitRemoveAction: SCNAction {

@@ -80,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				2A4F6E9D24FA8C120035B4F6 /* ARImageFinder */,
-				2A4F6EB424FA8C130035B4F6 /* ARImageFinderTests */,
 				2A4F6EBF24FA8C130035B4F6 /* ARImageFinderUITests */,
 				2A4F6E9C24FA8C120035B4F6 /* Products */,
 			);
@@ -106,6 +105,7 @@
 				2A4F6EA724FA8C130035B4F6 /* Assets.xcassets */,
 				2A4F6EA924FA8C130035B4F6 /* LaunchScreen.storyboard */,
 				2A4F6EAC24FA8C130035B4F6 /* Info.plist */,
+				2A4F6EB424FA8C130035B4F6 /* ARImageFinderTests */,
 			);
 			path = ARImageFinder;
 			sourceTree = "<group>";
