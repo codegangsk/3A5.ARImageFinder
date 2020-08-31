@@ -43,7 +43,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let imageName = imageAnchor.referenceImage.name!
         let referenceImage = imageAnchor.referenceImage
         
-        if imageName == "cup" {
+        guard imageName == "cup" else {return}
+        
         let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
         plane.firstMaterial?.diffuse.contents = UIColor.blue
         let planeNode = SCNNode(geometry: plane)
@@ -52,7 +53,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         node.addChildNode(planeNode)
         planeNode.runAction(waitRemoveAction)
         addName(node, for: imageAnchor)
-        }
+
     }
     
     var waitRemoveAction: SCNAction {
