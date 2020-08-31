@@ -18,17 +18,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         sceneView.delegate = self
         sceneView.showsStatistics = true
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil)
-        
         let configuration = ARWorldTrackingConfiguration()
+        
+        let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil)!
         configuration.detectionImages = referenceImages
+        
         sceneView.session.run(configuration)
     }
     
@@ -39,19 +38,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        switch anchor {
-        case let imageAnchor as ARImageAnchor:
-            nodeAdded(node, for: imageAnchor)
-        case let planeAnchor as ARPlaneAnchor:
-            nodeAdded(node, for: planeAnchor)
-        default:
-        print("A new image has been discovered")
-        }
-    }
-    
-    func nodeAdded(_ node: SCNNode, for imageAnchor: ARImageAnchor) {
-    }
-    
-    func nodeAdded(_ node: SCNNode, for planeAnchor: ARPlaneAnchor) {
+        guard let imageAnchor = anchor as? ARImageAnchor else {return}
+        
+        let referenceImage = imageAnchor.referenceImage
+             
+        let plane = SCNPlane(width: referenceImage.physicalSize.width, height: referenceImage.physicalSize.height)
+        plane.firstMaterial?.diffuse.contents = UIColor.blue
+        let planeNode = SCNNode(geometry: plane)
+        planeNode.opacity = 0.25
+        planeNode.eulerAngles.x = -Float.pi / 2
+        node.addChildNode(planeNode)
+        
     }
 }
