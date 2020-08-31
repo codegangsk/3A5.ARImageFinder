@@ -49,5 +49,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         planeNode.eulerAngles.x = -Float.pi / 2
         node.addChildNode(planeNode)
         
+        planeNode.runAction(waitRemoveAction)
+    }
+    
+    var waitRemoveAction: SCNAction {
+        return .sequence([.wait(duration: 5.0), .fadeOut(duration: 2.0), .removeFromParentNode()])
     }
 }
